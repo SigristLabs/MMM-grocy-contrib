@@ -1,0 +1,21 @@
+{
+  "name": "mmm-grocy-contrib",
+  "version": "0.1.0",
+  "description": "MagicMirror Grocy module",
+
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/SigristLabs/MMM-grocy-contrib.git"
+  },
+  "keywords": [
+    "magic mirror",
+    "smart mirror",
+    "Grocy"
+  ],
+  "author": "Paulo Sigrist",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SigristLabs/MMM-grocy-contrib/issues"
+  },
+  "homepage": "https://github.com/SigristLabs/MMM-grocy-contrib#readme"
+}
