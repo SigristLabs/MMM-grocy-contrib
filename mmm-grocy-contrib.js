@@ -1,9 +1,13 @@
-Module.register("MMM-grocy-contrib", {
+Module.register("mmm-grocy-contrib", {
     defaults: {
-        category: "Grocy",
+        authKey: "None",
+        grocyServer: "http://homeassistant.local:9192",
+        title: "Chores",
+
         fetchInterval: 10 * 1000
     },
     grocyVersion: "Unknown",
+    results: [],
 
     notificationReceived(notification, payload, sender) {
         if (notification === "MODULE_DOM_CREATED") {
@@ -15,22 +19,39 @@ Module.register("MMM-grocy-contrib", {
     },
 
     getDom() {
-        const wrapper = document.createElement("div");
+        var data = this.results;
+		var wrapper = document.createElement("ticker");
+		wrapper.className = "ha-"+this.config.rowClass;
 
-        if (this.grocyVersion === null) return wrapper;
+		// Starting to build the elements.
+		var statElement = document.createElement("header");
+		var title = this.config.title;
+		statElement.innerHTML = title;
 
-        wrapper.innerHTML = "Grocy Version: " + this.grocyVersion;
+        if (data && !this.isEmpty(data)) {
+            var tableElement = document.createElement("table");
 
+            for (row of data) {
+                var row = document.createElement("tr");
+
+                var name = document.createElement("td");
+                name.innerHTML = row.chore_name;
+
+                row.appendChildname(name);
+
+                tableElement.appendChild(row);
+            }
+        }
         return wrapper;
     },
 
     getSystemInfo() {
-        fetch("http://homeassistant.local:9192/api/system/info").then((response) => {
+        fetch(`${this.config.grocyServer}/api/chores`).then((response) => {
             response.json().then((json) => {
-                this.grocyVersion = json.grocy_version.Version;
+                this.results = json;
                 this.updateDom();
 
             })
         })
     }
-}
+});
