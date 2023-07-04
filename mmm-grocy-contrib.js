@@ -45,7 +45,11 @@ Module.register("mmm-grocy-contrib", {
     },
 
     getSystemInfo() {
-        fetch(`${this.config.grocyServer}/api/chores`).then((response) => {
+        const headers = {            
+            "GROCY-API-KEY": this.config.authKey,
+        };
+        
+        fetch(`${this.config.grocyServer}/api/chores`, { headers: headers}).then((response) => {
             response.json().then((json) => {
                 this.results = json;
                 this.updateDom();
