@@ -9,15 +9,14 @@ Module.register("mmm-grocy-contrib", {
     grocyVersion: "Unknown",
     results: [],
 
-    notificationReceived(notification, payload, sender) {
-        if (notification === "MODULE_DOM_CREATED") {
-            this.getSystemInfo();
-            setInterval(() => {
-                this.getSystemInfo()
-            }, this.config.fetchInterval);
-        }
+    start: function () {
+        // update timer
+        setInterval(function() {
+            this.getSystemInfo()
+            this.updateDom(this.getSystemInfo(), this.config.updateInterval);
+        });
     },
-
+    
     getDom() {
         var data = this.results;
 		var wrapper = document.createElement("ticker");
