@@ -2,7 +2,6 @@
   "name": "mmm-grocy-contrib",
   "version": "0.1.0",
   "description": "MagicMirror Grocy module",
-
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/SigristLabs/MMM-grocy-contrib.git"
@@ -17,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/SigristLabs/MMM-grocy-contrib/issues"
   },
-  "homepage": "https://github.com/SigristLabs/MMM-grocy-contrib#readme"
+  "homepage": "https://github.com/SigristLabs/MMM-grocy-contrib#readme",
+  "dependencies": {
+    
+  }
 }
